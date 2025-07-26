@@ -1,16 +1,17 @@
 version: 0.2
-
 phases:
   install:
     runtime-versions:
       php: 8.1
+    commands:
+      - composer install
   build:
     commands:
-      - echo "Installing PHP dependencies..."
-      - composer install
+      - zip -r application.zip . -x "*.git*"
   post_build:
     commands:
-      - echo "Build completed."
+      - echo Build completed
 artifacts:
   files:
-    - '**/*'
+    - application.zip
+  discard-paths: yes
